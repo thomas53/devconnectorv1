@@ -1,10 +1,10 @@
 const express = require('express');
 
 const connectDB = require('./config/db');
-const auth = require('./api/auth');
-const profile = require('./api/profile');
-const posts = require('./api/posts');
-const users = require('./api/users');
+const auth = require('./routes/api/auth');
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
+const users = require('./routes/api/users');
 
 const app = express();
 
