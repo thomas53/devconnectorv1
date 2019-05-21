@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://root:root1234@kentankcluster-twfcn.gcp.mongodb.net/test?retryWrites=true"
+  "mongoURI": "mongodb+srv://root:root1234@kentankcluster-twfcn.gcp.mongodb.net/test?retryWrites=true",
+  "jwtSecret": "testingmysecret"
 }
