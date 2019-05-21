@@ -113,4 +113,45 @@ router.post(
   }
 );
 
+// @route   GET api/profile/me
+// @desc    Get logged user profile
+// @access  Public
+router.get('/', async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+
+    if (!profiles) {
+      return res.status(400).json({ msg: 'There is no profile' });
+    }
+
+    res.json(profiles);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   GET api/profile/user/user_id
+// @desc    Get logged user profile
+// @access  Public
+router.get('/user/:user_id', async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.user_id
+    }).populate('user', ['name', 'avatar']);
+
+    if (!profile) {
+      return res.status(400).json({ msg: 'There is no profile' });
+    }
+
+    res.json(profile);
+  } catch (error) {
+    console.log(error);
+    if (error.kind == 'ObjectId') {
+      return res.status(400).json({ msg: 'There is no profile' });
+    }
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;
